@@ -1,5 +1,6 @@
 package com.nhnacademy.jpa.controller;
 
+import com.nhnacademy.jpa.dto.request.family_relationship.FamilyRelationshipDeleteRequest;
 import com.nhnacademy.jpa.dto.request.family_relationship.FamilyRelationshipInsertRequest;
 import com.nhnacademy.jpa.dto.request.family_relationship.FamilyRelationshipModifyRequest;
 import com.nhnacademy.jpa.dto.request.family_relationship.FamilyRelationshipRequest;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -69,6 +71,22 @@ public class FamilyRelationshipController {
         return ResponseEntity.status(HttpStatus.OK)
                              .headers(headers)
                              .body(familyRelationshipResponse);
+    }
+
+    @DeleteMapping("/{serialNumber}/relationship/{familySerialNumber}")
+    public ResponseEntity<FamilyRelationshipResponse> delete(
+        @PathVariable(name = "serialNumber") Long serialNumber,
+        @PathVariable(name = "familySerialNumber") Long familySerialNumber) {
+
+        FamilyRelationshipDeleteRequest deleteRequest =
+            FamilyRelationshipDeleteRequest.builder()
+                                           .baseSerialNumber(serialNumber)
+                                           .residentSerialNumber(familySerialNumber)
+                                           .build();
+        familyRelationshipService.deleteFamilyRelationship(deleteRequest);
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT)
+                             .body(null);
     }
 
 }
