@@ -1,0 +1,7 @@
+POST localhost:8080/residents/1/relationship
+Content-Type: application/json
+
+{
+  "familySerialNumber": 123,
+  "relationship": "father"
+}
