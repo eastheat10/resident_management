@@ -3,6 +3,7 @@ package com.nhnacademy.jpa.controller;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -18,6 +19,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 class FamilyRelationshipControllerTest {
@@ -74,5 +77,13 @@ class FamilyRelationshipControllerTest {
                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
     }
 
+    @Test
+    @DisplayName("가족관계 삭제")
+    void delete() throws Exception {
 
+        mockMvc.perform(MockMvcRequestBuilders.delete(
+                   "/residents/{serialNumber}/relationship/{familySerialNumber}", "123", "1"))
+               .andDo(print())
+               .andExpect(status().isNoContent());
+    }
 }
