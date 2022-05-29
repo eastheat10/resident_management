@@ -1,6 +1,6 @@
 package com.nhnacademy.jpa.entity;
 
-import com.nhnacademy.jpa.dto.request.family_relationship.FamilyRelationshipRequest;
+import com.nhnacademy.jpa.dto.request.familyrelationship.FamilyRelationshipRequest;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

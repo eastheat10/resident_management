@@ -1,10 +1,10 @@
 package com.nhnacademy.jpa.controller;
 
-import com.nhnacademy.jpa.dto.request.family_relationship.FamilyRelationshipDeleteRequest;
-import com.nhnacademy.jpa.dto.request.family_relationship.FamilyRelationshipInsertRequest;
-import com.nhnacademy.jpa.dto.request.family_relationship.FamilyRelationshipModifyRequest;
-import com.nhnacademy.jpa.dto.request.family_relationship.FamilyRelationshipRequest;
-import com.nhnacademy.jpa.dto.response.FamilyRelationshipResponse;
+import com.nhnacademy.jpa.dto.request.familyrelationship.FamilyRelationshipDeleteRequest;
+import com.nhnacademy.jpa.dto.request.familyrelationship.FamilyRelationshipInsertRequest;
+import com.nhnacademy.jpa.dto.request.familyrelationship.FamilyRelationshipModifyRequest;
+import com.nhnacademy.jpa.dto.request.familyrelationship.FamilyRelationshipRequest;
+import com.nhnacademy.jpa.dto.response.familyrelationship.FamilyRelationshipResponse;
 import com.nhnacademy.jpa.service.FamilyRelationshipService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
