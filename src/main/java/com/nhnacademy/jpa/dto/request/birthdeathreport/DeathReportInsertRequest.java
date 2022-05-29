@@ -6,11 +6,11 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class BirthReportInsertRequest {
+public class DeathReportInsertRequest {
 
     private Long residentSerialNumber;
     private LocalDate birthDeathReportDate;
-    private String birthReportQualificationsCode;
+    private String deathReportQualificationsCode;
     private String emailAddress;
     private String phoneNumber;
 }

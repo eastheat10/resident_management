@@ -1,4 +1,4 @@
-package com.nhnacademy.jpa.dto.request.birthdeathreport;
+package com.nhnacademy.jpa.dto.request;
 
 import java.time.LocalDate;
 import lombok.Getter;
@@ -6,11 +6,10 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class BirthReportInsertRequest {
+public class DeathReportModifyRequest {
 
-    private Long residentSerialNumber;
     private LocalDate birthDeathReportDate;
-    private String birthReportQualificationsCode;
+    private String deathReportQualificationsCode;
     private String emailAddress;
     private String phoneNumber;
 }
