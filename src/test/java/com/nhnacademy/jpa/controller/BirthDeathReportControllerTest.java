@@ -5,7 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nhnacademy.jpa.dto.request.DeathReportModifyRequest;
+import com.nhnacademy.jpa.dto.request.birthdeathreport.DeathReportModifyRequest;
 import com.nhnacademy.jpa.dto.request.birthdeathreport.BirthReportInsertRequest;
 import com.nhnacademy.jpa.dto.request.birthdeathreport.BirthReportModifyRequest;
 import com.nhnacademy.jpa.dto.request.birthdeathreport.DeathReportInsertRequest;
