@@ -10,8 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Table(name = "household")
 @Getter
@@ -28,6 +31,8 @@ public class Household {
     @JoinColumn(name = "household_resident_serial_number", referencedColumnName = "resident_serial_number")
     private Resident resident;
 
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "household_composition_date")
     private LocalDate householdCompositionDate;
 

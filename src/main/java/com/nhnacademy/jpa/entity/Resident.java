@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Table(name = "resident")
 @Getter
@@ -30,6 +31,7 @@ public class Resident {
     @Column(name = "gender_code")
     private String genderCode;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "birth_date")
     private LocalDateTime birthDate;
 
@@ -39,6 +41,7 @@ public class Resident {
     @Column(name = "registration_base_address")
     private String registrationBaseAddress;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "death_date")
     private LocalDateTime deathDate;
 
