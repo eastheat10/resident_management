@@ -117,7 +117,7 @@ class BirthDeathReportServiceTest {
 
         doNothing().when(birthDeathRepository).deleteById(any(BirthDeathReportResident.BirthDeathReportResidentId.class));
 
-        service.birthDelete(deleteRequest);
+        service.deathDelete(deleteRequest);
 
         verify(birthDeathRepository, times(1)).deleteById(any(BirthDeathReportResident.BirthDeathReportResidentId.class));
     }

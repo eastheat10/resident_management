@@ -1,5 +1,6 @@
 package com.nhnacademy.jpa.entity;
 
+import com.nhnacademy.jpa.dto.request.household.HouseholdRequest;
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,4 +36,11 @@ public class Household {
 
     @Column(name = "current_house_movement_address")
     private String currentHouseMovementAddress;
+
+    public Household(HouseholdRequest request, Resident resident) {
+        this.resident = resident;
+        this.householdCompositionDate = request.getHouseholdCompositionDate();
+        this.householdCompositionReasonCode = request.getHouseholdCompositionReasonCode();
+        this.currentHouseMovementAddress = request.getCurrentHouseMovementAddress();
+    }
 }

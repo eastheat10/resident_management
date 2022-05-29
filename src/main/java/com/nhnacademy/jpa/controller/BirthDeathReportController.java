@@ -2,7 +2,7 @@ package com.nhnacademy.jpa.controller;
 
 import static com.nhnacademy.jpa.service.BirthDeathReportService.*;
 
-import com.nhnacademy.jpa.dto.request.DeathReportModifyRequest;
+import com.nhnacademy.jpa.dto.request.birthdeathreport.DeathReportModifyRequest;
 import com.nhnacademy.jpa.dto.request.birthdeathreport.BirthDeathReportRequest;
 import com.nhnacademy.jpa.dto.request.birthdeathreport.BirthReportInsertRequest;
 import com.nhnacademy.jpa.dto.request.birthdeathreport.BirthReportModifyRequest;

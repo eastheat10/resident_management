@@ -1,4 +1,4 @@
-package com.nhnacademy.jpa.dto.request;
+package com.nhnacademy.jpa.dto.request.birthdeathreport;
 
 import java.time.LocalDate;
 import lombok.Getter;
