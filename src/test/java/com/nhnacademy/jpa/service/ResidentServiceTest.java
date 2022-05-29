@@ -3,9 +3,9 @@ package com.nhnacademy.jpa.service;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import com.nhnacademy.jpa.dto.request.family_relationship.FamilyRelationshipDeleteRequest;
-import com.nhnacademy.jpa.dto.request.family_relationship.FamilyRelationshipRequest;
-import com.nhnacademy.jpa.dto.response.FamilyRelationshipResponse;
+import com.nhnacademy.jpa.dto.request.familyrelationship.FamilyRelationshipDeleteRequest;
+import com.nhnacademy.jpa.dto.request.familyrelationship.FamilyRelationshipRequest;
+import com.nhnacademy.jpa.dto.response.familyrelationship.FamilyRelationshipResponse;
 import com.nhnacademy.jpa.entity.FamilyRelationship;
 import com.nhnacademy.jpa.entity.Resident;
 import com.nhnacademy.jpa.repository.FamilyRelationshipRepository;

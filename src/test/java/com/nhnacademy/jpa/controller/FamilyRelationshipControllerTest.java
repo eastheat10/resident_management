@@ -3,15 +3,14 @@ package com.nhnacademy.jpa.controller;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nhnacademy.jpa.dto.request.family_relationship.FamilyRelationshipInsertRequest;
-import com.nhnacademy.jpa.dto.request.family_relationship.FamilyRelationshipModifyRequest;
-import com.nhnacademy.jpa.dto.request.family_relationship.FamilyRelationshipRequest;
-import com.nhnacademy.jpa.dto.response.FamilyRelationshipResponse;
+import com.nhnacademy.jpa.dto.request.familyrelationship.FamilyRelationshipInsertRequest;
+import com.nhnacademy.jpa.dto.request.familyrelationship.FamilyRelationshipModifyRequest;
+import com.nhnacademy.jpa.dto.request.familyrelationship.FamilyRelationshipRequest;
+import com.nhnacademy.jpa.dto.response.familyrelationship.FamilyRelationshipResponse;
 import com.nhnacademy.jpa.service.FamilyRelationshipService;
 import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +18,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 

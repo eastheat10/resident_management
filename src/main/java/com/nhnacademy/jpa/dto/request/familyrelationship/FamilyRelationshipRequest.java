@@ -1,4 +1,4 @@
-package com.nhnacademy.jpa.dto.request.family_relationship;
+package com.nhnacademy.jpa.dto.request.familyrelationship;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
