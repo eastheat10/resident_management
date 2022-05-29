@@ -1,5 +1,6 @@
 package com.nhnacademy.jpa.entity;
 
+import com.nhnacademy.jpa.dto.request.resident.ResidentRequest;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +28,7 @@ public class Resident {
     private String rrn;
 
     @Column(name = "gender_code")
-    private String gender_code;
+    private String genderCode;
 
     @Column(name = "birth_date")
     private LocalDateTime birthDate;
@@ -46,4 +47,28 @@ public class Resident {
 
     @Column(name = "death_place_address")
     private String deathPlaceAddress;
+
+    public Resident(ResidentRequest request) {
+        this.name = request.getName();
+        this.rrn = request.getRrn();
+        this.birthDate = request.getBirthDate();
+        this.genderCode = request.getGenderCode();
+        this.birthPlaceCode = request.getBirthPlaceCode();
+        this.registrationBaseAddress = request.getRegistrationBaseAddress();
+        this.deathDate = request.getDeathDate();
+        this.deathPlaceCode = request.getDeathPlaceCode();
+        this.deathPlaceAddress = request.getDeathPlaceAddress();
+    }
+
+    public void modify(ResidentRequest request) {
+        this.name = request.getName();
+        this.rrn = request.getRrn();
+        this.birthDate = request.getBirthDate();
+        this.genderCode = request.getGenderCode();
+        this.birthPlaceCode = request.getBirthPlaceCode();
+        this.registrationBaseAddress = request.getRegistrationBaseAddress();
+        this.deathDate = request.getDeathDate();
+        this.deathPlaceCode = request.getDeathPlaceCode();
+        this.deathPlaceAddress = request.getDeathPlaceAddress();
+    }
 }

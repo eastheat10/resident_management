@@ -3,12 +3,9 @@ package com.nhnacademy.jpa.service;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import com.nhnacademy.jpa.dto.request.familyrelationship.FamilyRelationshipDeleteRequest;
-import com.nhnacademy.jpa.dto.request.familyrelationship.FamilyRelationshipRequest;
-import com.nhnacademy.jpa.dto.response.familyrelationship.FamilyRelationshipResponse;
-import com.nhnacademy.jpa.entity.FamilyRelationship;
+import com.nhnacademy.jpa.dto.request.resident.ResidentRequest;
+import com.nhnacademy.jpa.dto.response.resident.ResidentResponse;
 import com.nhnacademy.jpa.entity.Resident;
-import com.nhnacademy.jpa.repository.FamilyRelationshipRepository;
 import com.nhnacademy.jpa.repository.ResidentRepository;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,89 +14,44 @@ import org.junit.jupiter.api.Test;
 
 class ResidentServiceTest {
 
-    FamilyRelationshipRepository familyRelationshipRepository;
     ResidentRepository residentRepository;
-    FamilyRelationshipService familyRelationshipService;
+    ResidentService service;
 
     @BeforeEach
     void setUp() {
-        familyRelationshipRepository = mock(FamilyRelationshipRepository.class);
         residentRepository = mock(ResidentRepository.class);
-        familyRelationshipService =
-            new FamilyRelationshipService(familyRelationshipRepository, residentRepository);
+        service = new ResidentService(residentRepository);
     }
 
     @Test
-    @DisplayName("가족관계 등록")
+    @DisplayName("주민 등록")
     void insert() {
-        FamilyRelationshipRequest dto = mock(FamilyRelationshipRequest.class);
-        FamilyRelationship familyRelationship = mock(FamilyRelationship.class);
-        FamilyRelationship.FamilyRelationshipId id =
-            mock(FamilyRelationship.FamilyRelationshipId.class);
 
-        Resident resident = mock(Resident.class);
+        ResidentRequest request = new ResidentRequest();
+        Resident resident = new Resident(request);
 
-        when(familyRelationship.getFamilyRelationshipId()).thenReturn(id);
+        when(residentRepository.save(any(Resident.class))).thenReturn(resident);
 
-        when(id.getBaseResidentSerialNumber()).thenReturn(1L);
-        when(id.getFamilyResidentSerialNumber()).thenReturn(1L);
+        ResidentResponse insert = service.insert(request);
 
-        when(familyRelationship.getFamilyRelationshipCode()).thenReturn("");
-
-        when(dto.getSerialNumber()).thenReturn(1L);
-        when(residentRepository.findById(dto.getSerialNumber())).thenReturn(Optional.of(resident));
-        when(familyRelationshipRepository.save(any())).thenReturn(familyRelationship);
-
-        FamilyRelationshipResponse response =
-            familyRelationshipService.insertFamilyRelationship(dto);
-
-        assertThat(response).isNotNull();
+        assertThat(insert).isNotNull();
     }
 
     @Test
-    @DisplayName("가족관계 수정")
-    void update() {
-        FamilyRelationshipRequest dto = mock(FamilyRelationshipRequest.class);
-        FamilyRelationship familyRelationship = mock(FamilyRelationship.class);
-        FamilyRelationship.FamilyRelationshipId id =
-            mock(FamilyRelationship.FamilyRelationshipId.class);
+    @DisplayName("주민 수정")
+    void modify() {
 
-        when(familyRelationship.getFamilyRelationshipId()).thenReturn(id);
+        ResidentRequest request = new ResidentRequest();
+        Resident resident = spy(new Resident());
 
-        when(id.getBaseResidentSerialNumber()).thenReturn(0L);
-        when(id.getFamilyResidentSerialNumber()).thenReturn(0L);
-        when(familyRelationship.getFamilyRelationshipCode()).thenReturn("");
+        when(residentRepository.findById(anyLong())).thenReturn(Optional.of(resident));
 
-        when(dto.getSerialNumber()).thenReturn(0L);
-        when(dto.getFamilySerialNumber()).thenReturn(0L);
-        when(dto.getRelationship()).thenReturn("");
+        doNothing().when(resident).modify(request);
 
-        when(familyRelationshipRepository.findById(any())).thenReturn(
-            Optional.of(familyRelationship));
-        doNothing().when(familyRelationship).updateFamilyRelationshipCode(anyString());
+        ResidentResponse modify = service.modify(request, anyLong());
 
-        FamilyRelationshipResponse response =
-            familyRelationshipService.updateFamilyRelationship(dto);
-
-        assertThat(response).isNotNull();
+        verify(resident, times(1)).modify(request);
+        assertThat(modify).isNotNull();
     }
 
-    @Test
-    @DisplayName("가족관계 삭제")
-    void delete() {
-        FamilyRelationshipDeleteRequest dto = mock(FamilyRelationshipDeleteRequest.class);
-        FamilyRelationship.FamilyRelationshipId id =
-            mock(FamilyRelationship.FamilyRelationshipId.class);
-
-        when(dto.getBaseSerialNumber()).thenReturn(0L);
-        when(dto.getResidentSerialNumber()).thenReturn(0L);
-
-        doNothing().when(familyRelationshipRepository)
-                   .deleteById(any(FamilyRelationship.FamilyRelationshipId.class));
-
-        familyRelationshipService.deleteFamilyRelationship(dto);
-
-        verify(familyRelationshipRepository, times(1)).deleteById(
-            any(FamilyRelationship.FamilyRelationshipId.class));
-    }
 }
