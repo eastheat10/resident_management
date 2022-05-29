@@ -5,8 +5,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nhnacademy.jpa.dto.request.DeathReportModifyRequest;
 import com.nhnacademy.jpa.dto.request.birthdeathreport.BirthReportInsertRequest;
 import com.nhnacademy.jpa.dto.request.birthdeathreport.BirthReportModifyRequest;
+import com.nhnacademy.jpa.dto.request.birthdeathreport.DeathReportInsertRequest;
 import com.nhnacademy.jpa.service.BirthDeathReportService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -63,6 +65,42 @@ class BirthDeathReportControllerTest {
     void birthDelete() throws Exception {
 
         mockMvc.perform(delete("/residents/{serialNumber}/birth/{targetSerialNumber}", "0", "1"))
+               .andExpect(status().isNoContent());
+    }
+
+    @Test
+    @DisplayName("사망신고")
+    void deathInsert() throws Exception {
+
+        DeathReportInsertRequest request = new DeathReportInsertRequest();
+
+        mockMvc.perform(post("/residents/{serialNumber}/death", "0")
+                   .contentType(MediaType.APPLICATION_JSON)
+                   .content(mapper.writeValueAsString(request)))
+               .andExpect(status().isCreated())
+               .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+               .andDo(print());
+    }
+
+    @Test
+    @DisplayName("사망신고 수정")
+    void deathModify() throws Exception {
+
+        DeathReportModifyRequest request = new DeathReportModifyRequest();
+
+        mockMvc.perform(put("/residents/{serialNumber}/death/{targetSerialNumber}", "0", "1")
+                   .contentType(MediaType.APPLICATION_JSON)
+                   .content(mapper.writeValueAsString(request)))
+               .andExpect(status().isOk())
+               .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+               .andDo(print());
+    }
+
+    @Test
+    @DisplayName("사망신고 삭제")
+    void deathDelete() throws Exception {
+
+        mockMvc.perform(delete("/residents/{serialNumber}/death/{targetSerialNumber}", "0", "1"))
                .andExpect(status().isNoContent());
     }
 }

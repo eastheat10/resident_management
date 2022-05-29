@@ -5,6 +5,7 @@ import static org.mockito.Mockito.*;
 
 import com.nhnacademy.jpa.dto.request.birthdeathreport.BirthDeathReportRequest;
 import com.nhnacademy.jpa.dto.response.birthdeathreport.BirthReportResponse;
+import com.nhnacademy.jpa.dto.response.birthdeathreport.DeathReportResponse;
 import com.nhnacademy.jpa.entity.BirthDeathReportResident;
 import com.nhnacademy.jpa.entity.Resident;
 import com.nhnacademy.jpa.repository.BirthDeathReportRepository;
@@ -63,6 +64,54 @@ class BirthDeathReportServiceTest {
     @Test
     @DisplayName("출생정보 삭제")
     void birthDelete() {
+
+        BirthDeathReportRequest deleteRequest = mock(BirthDeathReportRequest.class);
+
+        doNothing().when(birthDeathRepository).deleteById(any(BirthDeathReportResident.BirthDeathReportResidentId.class));
+
+        service.birthDelete(deleteRequest);
+
+        verify(birthDeathRepository, times(1)).deleteById(any(BirthDeathReportResident.BirthDeathReportResidentId.class));
+    }
+
+    @Test
+    @DisplayName("사망신고")
+    void deathInsert() {
+        BirthDeathReportRequest insertRequest = mock(BirthDeathReportRequest.class);
+        Resident resident = mock(Resident.class);
+        BirthDeathReportResident birthDeathReportResident = mock(BirthDeathReportResident.class);
+        BirthDeathReportResident.BirthDeathReportResidentId id =
+            mock(BirthDeathReportResident.BirthDeathReportResidentId.class);
+
+        setWhen(insertRequest, resident, birthDeathReportResident, id);
+
+        DeathReportResponse response = service.deathReportInsert(insertRequest);
+
+        assertThat(response).isNotNull();
+    }
+
+    @Test
+    @DisplayName("사망신고 수정")
+    void deathModify() {
+
+        BirthDeathReportRequest request = mock(BirthDeathReportRequest.class);
+        BirthDeathReportResident birthDeathReportResident = mock(BirthDeathReportResident.class);
+
+        setWhen(request, mock(Resident.class), birthDeathReportResident, mock(
+            BirthDeathReportResident.BirthDeathReportResidentId.class));
+
+        when(birthDeathRepository.findById(any())).thenReturn(Optional.of(birthDeathReportResident));
+
+        doNothing().when(birthDeathReportResident).modify(request);
+
+        DeathReportResponse deathReportResponse = service.deathReportModify(request);
+
+        assertThat(deathReportResponse).isNotNull();
+    }
+
+    @Test
+    @DisplayName("사망신고 삭제")
+    void deathDelete() {
 
         BirthDeathReportRequest deleteRequest = mock(BirthDeathReportRequest.class);
 
