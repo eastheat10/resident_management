@@ -9,8 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Table(name = "certificate_issue")
 @Getter
@@ -30,6 +33,8 @@ public class CertificateIssue {
     @Column(name = "certificate_type_code")
     private String certificateTypeCode;
 
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "certificate_issue_date")
     private LocalDate date;
 }
