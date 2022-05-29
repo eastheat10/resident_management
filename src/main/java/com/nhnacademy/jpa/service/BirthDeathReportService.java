@@ -38,6 +38,7 @@ public class BirthDeathReportService {
         return new BirthReportResponse(saveBirthDeathReport);
     }
 
+    @Transactional
     public BirthReportResponse birthModify(BirthDeathReportRequest request) {
         BirthDeathReportResident.BirthDeathReportResidentId id =
             new BirthDeathReportResident.BirthDeathReportResidentId("출생",
@@ -51,6 +52,7 @@ public class BirthDeathReportService {
         return new BirthReportResponse(birthDeathReportResident);
     }
 
+    @Transactional
     public void birthDelete(BirthDeathReportRequest deleteRequest) {
         BirthDeathReportResident.BirthDeathReportResidentId id =
             new BirthDeathReportResident.BirthDeathReportResidentId(
