@@ -1,12 +1,11 @@
-package com.nhnacademy.jpa.dto.response;
+package com.nhnacademy.jpa.dto.response.certification;
 
 import com.nhnacademy.jpa.entity.CertificateIssue;
-import com.nhnacademy.jpa.entity.Resident;
 import java.time.LocalDate;
 import lombok.Getter;
 
 @Getter
-public class CertificationResponse {
+public class FamilyRelationshipInfoResponse {
 
     private final String certificateConfirmationNumber;
     private final String registrationBaseAddress;
@@ -17,16 +16,16 @@ public class CertificationResponse {
     private final LocalDate residentBirthDate;
     private final String residentGenderCode;
 
-    public CertificationResponse(Resident resident, CertificateIssue issue) {
+    public FamilyRelationshipInfoResponse(CertificateIssue issue) {
         this.certificateConfirmationNumber =
             getFormatCertificationNumber(issue.getCertificateConfirmationNumber());
-        this.registrationBaseAddress = resident.getRegistrationBaseAddress();
+        this.registrationBaseAddress = issue.getResident().getRegistrationBaseAddress();
         this.certificateTypeCode = issue.getCertificateTypeCode();
         this.date = issue.getDate();
-        this.residentName = resident.getName();
-        this.residentRrn = rrnMasking(resident.getRrn());
-        this.residentBirthDate = resident.getBirthDate().toLocalDate();
-        this.residentGenderCode = resident.getGenderCode();
+        this.residentName = issue.getResident().getName();
+        this.residentRrn = rrnMasking(issue.getResident().getRrn());
+        this.residentBirthDate = issue.getResident().getBirthDate().toLocalDate();
+        this.residentGenderCode = issue.getResident().getGenderCode();
     }
 
     private String rrnMasking(String rrn) {
