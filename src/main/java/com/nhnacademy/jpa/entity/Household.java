@@ -31,8 +31,6 @@ public class Household {
     @JoinColumn(name = "household_resident_serial_number", referencedColumnName = "resident_serial_number")
     private Resident resident;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "household_composition_date")
     private LocalDate householdCompositionDate;
 

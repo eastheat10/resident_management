@@ -33,8 +33,6 @@ public class CertificateIssue {
     @Column(name = "certificate_type_code")
     private String certificateTypeCode;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "certificate_issue_date")
     private LocalDate date;
 }
