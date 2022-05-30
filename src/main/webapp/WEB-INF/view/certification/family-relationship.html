@@ -14,7 +14,7 @@
             height: 50px;
         }
     </style>
-    <title>Title</title>
+    <title>가족관계증명서</title>
 </head>
 <body>
 
@@ -22,17 +22,17 @@
 
 <table>
     <thead>
-    <tr>
+    <tr style="background-color: gray">
         <td th:text="${info.certificateTypeCode}" colspan="5"></td>
     </tr>
-    <tr>
+    <tr style="background-color: gray">
         <td th:text="'(발급일:' + ${info.date} + ', 증명서 확인번호: '+ ${info.certificateTypeCode} + ')'" colspan="5"></td>
     </tr>
     <tr>
-        <td colspan="2">등록기준지<br/>(본적)</td>
+        <td colspan="2"  style="background-color: gainsboro">등록기준지<br/>(본적)</td>
         <td th:text="${info.registrationBaseAddress}" colspan="3"></td>
     </tr>
-    <tr>
+    <tr  style="background-color: gainsboro">
         <td>구분</td>
         <td>성명</td>
         <td>출생연월일</td>

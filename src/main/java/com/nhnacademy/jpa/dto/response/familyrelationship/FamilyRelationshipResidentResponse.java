@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import lombok.Getter;
 
 @Getter
-public class FamilyRelationshipInfoResponse {
+public class FamilyRelationshipResidentResponse {
 
     private final String familyRelationshipCode;
     private final String name;
@@ -13,7 +13,7 @@ public class FamilyRelationshipInfoResponse {
     private final String residentRegistrationNumber;
     private final String genderCode;
 
-    public FamilyRelationshipInfoResponse(FamilyRelationshipInfoDto dto) {
+    public FamilyRelationshipResidentResponse(FamilyRelationshipInfoDto dto) {
         this.familyRelationshipCode = dto.getFamilyRelationshipCode();
         this.birthDate = dto.getBirthDate().toLocalDate();
         this.name = dto.getName();

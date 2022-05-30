@@ -1,6 +1,8 @@
 package com.nhnacademy.jpa.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -31,6 +33,15 @@ public class HouseholdCompositionResident {
     @ManyToOne
     @JoinColumn(name = "resident_serial_number")
     private Resident resident;
+
+    @Column(name = "report_date")
+    private LocalDate reportDate;
+
+    @Column(name = "household_relationship_code")
+    private String householdRelationshipCode;
+
+    @Column(name = "household_composition_change_reason_code")
+    private String changeReasonCode;
 
     @Embeddable
     @EqualsAndHashCode
