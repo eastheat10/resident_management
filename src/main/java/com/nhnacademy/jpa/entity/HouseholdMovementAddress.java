@@ -64,8 +64,6 @@ public class HouseholdMovementAddress {
     @NoArgsConstructor
     public static class HouseholdMovementAddressId implements Serializable {
 
-        @Temporal(TemporalType.DATE)
-        @DateTimeFormat(pattern = "yyyy-MM-dd")
         @Column(name = "house_movement_report_date")
         private LocalDate houseMovementReportDate;
         private Long householdSerialNumber;

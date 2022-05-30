@@ -19,9 +19,13 @@ public class RootConfig {
         BasicDataSource dataSource = new BasicDataSource();
 
         dataSource.setDriverClassName(com.mysql.cj.jdbc.Driver.class.getName());
-        dataSource.setUrl("jdbc:mysql://133.186.211.156:3306/nhn_academy_17");
-        dataSource.setUsername("nhn_academy_17");
-        dataSource.setPassword("e(kbT!u88]ReeHwL");
+//        dataSource.setUrl("jdbc:mysql://133.186.211.156:3306/nhn_academy_17");
+//        dataSource.setUsername("nhn_academy_17");
+//        dataSource.setPassword("e(kbT!u88]ReeHwL");
+
+        dataSource.setUrl("jdbc:mysql://localhost:3306/resident");
+        dataSource.setUsername("root");
+        dataSource.setPassword("Ehdduf97^^");
 
         dataSource.setInitialSize(2);
         dataSource.setMaxTotal(2);

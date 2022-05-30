@@ -39,8 +39,6 @@ public class BirthDeathReportResident {
     @JoinColumn(name = "resident_serial_number")
     private Resident resident;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "birth_death_report_date")
     private LocalDate birthDeathReportDate;
 

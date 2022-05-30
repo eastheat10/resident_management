@@ -24,18 +24,23 @@ public class FamilyRelationship {
     @EmbeddedId
     private FamilyRelationshipId familyRelationshipId;
 
+    @MapsId("familyResidentSerialNumber")
+    @ManyToOne
+    @JoinColumn(name = "family_resident_serial_number", referencedColumnName = "resident_serial_number")
+    private Resident resident;
+
     @MapsId("baseResidentSerialNumber")
     @ManyToOne
     @JoinColumn(name = "base_resident_serial_number", referencedColumnName = "resident_serial_number")
-    private Resident resident;
+    private Resident baseResident;
 
     @Column(name = "family_relationship_code")
     private String familyRelationshipCode;
 
-    public FamilyRelationship(FamilyRelationshipRequest dto, Resident resident) {
+    public FamilyRelationship(FamilyRelationshipRequest dto, Resident baseResident) {
         this.familyRelationshipId =
             new FamilyRelationshipId(dto.getSerialNumber(), dto.getFamilySerialNumber());
-        this.resident = resident;
+        this.baseResident = baseResident;
         this.familyRelationshipCode = dto.getRelationship();
     }
 
@@ -50,9 +55,7 @@ public class FamilyRelationship {
     @NoArgsConstructor
     public static class FamilyRelationshipId implements Serializable {
 
-        private Long baseResidentSerialNumber;
-
-        @Column(name = "family_resident_serial_number")
         private Long familyResidentSerialNumber;
+        private Long baseResidentSerialNumber;
     }
 }

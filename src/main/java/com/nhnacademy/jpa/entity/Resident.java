@@ -41,7 +41,6 @@ public class Resident {
     @Column(name = "registration_base_address")
     private String registrationBaseAddress;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "death_date")
     private LocalDateTime deathDate;
 

@@ -5,11 +5,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhnacademy.jpa.dto.request.household.HouseholdRequest;
 import com.nhnacademy.jpa.dto.request.householdmovementaddress.HouseholdMovementAddressRequest;
 import com.nhnacademy.jpa.dto.response.householdmovementaddress.HouseholdMovementAddressResponse;
+import com.nhnacademy.jpa.entity.HouseholdMovementAddress;
 import com.nhnacademy.jpa.service.HouseholdService;
 import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
@@ -73,9 +73,14 @@ class HouseholdControllerTest {
     @DisplayName("세대이전정보 수정 요청")
     void movementModify() throws Exception {
 
+        HouseholdMovementAddress movementAddress = spy(new HouseholdMovementAddress());
+        HouseholdMovementAddress.HouseholdMovementAddressId id =
+            mock(HouseholdMovementAddress.HouseholdMovementAddressId.class);
         HouseholdMovementAddressRequest request = new HouseholdMovementAddressRequest();
-        HouseholdMovementAddressResponse response = mock(HouseholdMovementAddressResponse.class);
 
+        when(movementAddress.getHouseholdMovementAddressId()).thenReturn(id);
+        when(id.getHouseMovementReportDate()).thenReturn(LocalDate.now());
+        HouseholdMovementAddressResponse response = new HouseholdMovementAddressResponse(movementAddress);
         when(service.updateMovementAddress(
             any(request.getClass()), anyLong(), any(LocalDate.class))).thenReturn(response);
 

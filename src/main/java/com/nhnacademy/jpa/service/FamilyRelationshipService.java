@@ -24,12 +24,12 @@ public class FamilyRelationshipService {
     public FamilyRelationshipResponse insertFamilyRelationship(
         FamilyRelationshipRequest familyRelationshipRequest) {
 
-        Resident resident =
+        Resident baseResident =
             residentRepository.findById(familyRelationshipRequest.getSerialNumber())
                               .orElseThrow(ResidentNotFound::new);
 
         FamilyRelationship baseFamilyRelationship =
-            new FamilyRelationship(familyRelationshipRequest, resident);
+            new FamilyRelationship(familyRelationshipRequest, baseResident);
 
         FamilyRelationship saveFamilyRelationship =
             familyRelationshipRepository.save(baseFamilyRelationship);
