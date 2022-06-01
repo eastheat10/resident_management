@@ -37,7 +37,6 @@ public class CertificationService {
     private final HouseholdMovementAddressRepository movementAddressRepository;
     private final HouseholdCompositionResidentRepository compositionRepository;
 
-
     public FamilyRelationshipInfoResponse getRelationshipCertificationInfo(
         Long residentSerialNumber) {
 

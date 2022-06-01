@@ -1,14 +1,15 @@
 package com.nhnacademy.jpa.repository;
 
 import com.nhnacademy.jpa.entity.FamilyRelationship;
-import com.nhnacademy.jpa.repository.dto.FamilyRelationshipInfoDto;
+import com.nhnacademy.jpa.entity.dto.FamilyRelationshipInfoDto;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface FamilyRelationshipRepository
-    extends JpaRepository<FamilyRelationship, FamilyRelationship.FamilyRelationshipId> {
+    extends JpaRepository<FamilyRelationship, FamilyRelationship.FamilyRelationshipId>,
+    FamilyRelationshipRepositoryCustom {
 
     @Query("SELECT r.name AS name" +
         ", r.rrn AS residentRegistrationNumber" +
