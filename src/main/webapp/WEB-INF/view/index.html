@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        td, th {
+            border: 1px solid black;
+            width: 110px;
+            height: 50px;
+        }
+
+        .page td {
+            border: none;
+            width: 10px;
+        }
+
+        .page td:hover {
+            cursor: pointer;
+        }
+    </style>
+    <title>주민목록</title>
+</head>
+<body>
+<div th:if="${cantDelete == true}">
+    <script>
+        alert('해당 주민을 삭제할 수 없습니다.')
+    </script>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>이름</th>
+        <th>가족관계증명서</th>
+        <th>주민등록등본</th>
+        <th>출생신고서</th>
+        <th>사망신고서</th>
+        <th>증명서 발급목록</th>
+        <th>삭제</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="r : ${list}">
+        <td th:text="${r.name}"></td>
+        <td>
+            <button th:onclick="'location.href=\'' + @{|/certification/family-relationship/${r.id}|} + '\''">
+                가족관계증명서
+            </button>
+        </td>
+        <td>
+            <button th:onclick="'location.href=\'' + @{|/certification/household-registration/${r.id}|} + '\''">
+                주민록등본
+            </button>
+        </td>
+        <td>
+            <button th:if="${r.hasBirthReport}"
+                    th:onclick="'location.href=\'' + @{|/report/birth/${r.id}|} + '\''">
+                출생신고서
+            </button>
+        </td>
+        <td>
+            <button th:if="${r.hasDeathReport}"
+                    th:onclick="'location.href=\'' + @{|/report/death/${r.id}|} + '\''">
+                사망신고서
+            </button>
+        </td>
+        <td>
+            <button th:onclick="'location.href=\'' + @{|/certification/list/${r.id}?size=5&page=0|} + '\''">
+                발급목록
+            </button>
+        </td>
+        <td>
+            <button th:onclick="'location.href=\'' + @{|/resident/${r.id}|} + '\''">
+                삭제
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<table class="page">
+    <tr>
+        <td th:each="page : ${#numbers.sequence(1, list.getTotalPages())}"
+            th:text="${page}"
+            th:onclick="'location.href=\'' + @{|?size=5&page=${page - 1}|}+'\''"></td>
+    </tr>
+</table>
+</body>
+</html>

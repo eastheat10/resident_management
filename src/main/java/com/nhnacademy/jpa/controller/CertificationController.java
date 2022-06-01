@@ -1,5 +1,6 @@
 package com.nhnacademy.jpa.controller;
 
+import com.nhnacademy.jpa.dto.response.certification.CertificationInfoResponse;
 import com.nhnacademy.jpa.dto.response.certification.CompositionResidentResponse;
 import com.nhnacademy.jpa.dto.response.certification.FamilyRelationshipInfoResponse;
 import com.nhnacademy.jpa.dto.response.certification.HouseholdRegistrationInfoResponse;
@@ -9,6 +10,8 @@ import com.nhnacademy.jpa.service.CertificationService;
 import java.util.List;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -64,6 +67,15 @@ public class CertificationController {
         mav.addObject("person", person);
         mav.addObject("compositions", compositions);
 
+        return mav;
+    }
+
+    @GetMapping("/list/{id}")
+    public ModelAndView certificationList(@PathVariable("id") Long id, Pageable pageable) {
+
+        ModelAndView mav = new ModelAndView("certification/list");
+
+        mav.addObject("list", certificationService.findCertificationIssueList(id, pageable));
         return mav;
     }
 }
