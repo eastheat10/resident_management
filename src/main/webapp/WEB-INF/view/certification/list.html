@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            width: 500px;
+        }
+
+        td, th {
+            border: 1px solid black;
+            height: 50px;
+        }
+
+        .page td {
+            border: none;
+            width: 10px;
+        }
+
+        .page td:hover {
+            cursor: pointer;
+        }
+    </style>
+    <title>증명서 목록</title>
+</head>
+<body>
+<h1>증명서 발급 목록</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>증명서 번호</th>
+        <th>증명서 종류</th>
+        <th>증명서 발급일자</th>
+    </tr>
+    </thead>
+    <tbody th:if="${list.getTotalPages() == 0}">
+    <tr>
+        <td colspan="3">
+            발급된 증명서가 없습니다.
+        </td>
+    </tr>
+    </tbody>
+    <tbody th:unless="${list.getTotalPages() == 0}">
+    <tr th:each="c : ${list}">
+        <td th:text="${c.certificationNumber}">증명서 번호</td>
+        <td th:text="${c.certificationTypeCode}">증명서 종류</td>
+        <td th:text="${c.issueDate}">증명서 발급일자</td>
+    </tr>
+    </tbody>
+</table>
+
+<table class="page">
+    <tr>
+        <td th:each="page : ${#numbers.sequence(1, list.getTotalPages())}"
+            th:text="${page}"
+            th:onclick="'location.href=\'' + @{|?size=5&page=${page - 1}|}+'\''"></td>
+    </tr>
+</table>
+</body>
+</html>

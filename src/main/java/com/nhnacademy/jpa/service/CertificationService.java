@@ -2,6 +2,7 @@ package com.nhnacademy.jpa.service;
 
 import static java.util.stream.Collectors.*;
 
+import com.nhnacademy.jpa.dto.response.certification.CertificationInfoResponse;
 import com.nhnacademy.jpa.dto.response.certification.CompositionResidentResponse;
 import com.nhnacademy.jpa.dto.response.certification.FamilyRelationshipInfoResponse;
 import com.nhnacademy.jpa.dto.response.certification.HouseholdRegistrationInfoResponse;
@@ -21,6 +22,8 @@ import com.nhnacademy.jpa.repository.HouseholdRepository;
 import com.nhnacademy.jpa.repository.ResidentRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -82,6 +85,7 @@ public class CertificationService {
     }
 
     public List<HouseholdMovementAddressResponse> getMovementList(Long residentSerialNumber) {
+
         Resident resident = residentRepository.findById(residentSerialNumber)
                                               .orElseThrow(ResidentNotFound::new);
         Household household = householdRepository.findByResident(resident)
@@ -96,6 +100,7 @@ public class CertificationService {
     }
 
     public List<CompositionResidentResponse> getHouseholdComposition(Long residentSerialNumber) {
+
         Resident resident = residentRepository.findById(residentSerialNumber)
                                               .orElseThrow(ResidentNotFound::new);
         Household household = householdRepository.findByResident(resident)
@@ -105,5 +110,13 @@ public class CertificationService {
                                     .stream()
                                     .map(CompositionResidentResponse::new)
                                     .collect(toList());
+    }
+
+    public Page<CertificationInfoResponse> findCertificationIssueList(Long id, Pageable pageable) {
+
+        Resident resident = residentRepository.findById(id)
+                                              .orElseThrow(ResidentNotFound::new);
+        return certificationRepository.findAllByResident(resident, pageable)
+                                      .map(CertificationInfoResponse::new);
     }
 }

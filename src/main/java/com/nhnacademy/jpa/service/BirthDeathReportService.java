@@ -6,9 +6,9 @@ import com.nhnacademy.jpa.dto.response.birthdeathreport.DeathReportResponse;
 import com.nhnacademy.jpa.entity.BirthDeathReportResident;
 import com.nhnacademy.jpa.entity.Resident;
 import com.nhnacademy.jpa.exception.ReportNotFoundException;
+import com.nhnacademy.jpa.exception.ResidentNotFound;
 import com.nhnacademy.jpa.repository.BirthDeathReportRepository;
 import com.nhnacademy.jpa.repository.ResidentRepository;
-import javax.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,10 +28,10 @@ public class BirthDeathReportService {
 
         Resident resident =
             residentRepository.findById(insertRequest.getResidentSerialNumber())
-                              .orElseThrow(NoResultException::new);
+                              .orElseThrow(ResidentNotFound::new);
         Resident reportResident =
             residentRepository.findById(insertRequest.getReportResidentSerialNumber())
-                              .orElseThrow(NoResultException::new);
+                              .orElseThrow(ResidentNotFound::new);
 
         BirthDeathReportResident birthDeathReport =
             new BirthDeathReportResident(insertRequest, resident, reportResident);
@@ -74,10 +74,10 @@ public class BirthDeathReportService {
 
         Resident resident =
             residentRepository.findById(insertRequest.getResidentSerialNumber())
-                              .orElseThrow(NoResultException::new);
+                              .orElseThrow(ResidentNotFound::new);
         Resident reportResident =
             residentRepository.findById(insertRequest.getReportResidentSerialNumber())
-                              .orElseThrow(NoResultException::new);
+                              .orElseThrow(ResidentNotFound::new);
 
         BirthDeathReportResident birthDeathReport =
             new BirthDeathReportResident(insertRequest, resident, reportResident);
