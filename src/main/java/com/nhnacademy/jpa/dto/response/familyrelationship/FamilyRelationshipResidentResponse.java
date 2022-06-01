@@ -1,6 +1,6 @@
 package com.nhnacademy.jpa.dto.response.familyrelationship;
 
-import com.nhnacademy.jpa.repository.dto.FamilyRelationshipInfoDto;
+import com.nhnacademy.jpa.entity.dto.FamilyRelationshipInfoDto;
 import java.time.LocalDate;
 import lombok.Getter;
 

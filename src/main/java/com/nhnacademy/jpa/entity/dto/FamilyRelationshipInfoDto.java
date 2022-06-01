@@ -1,4 +1,4 @@
-package com.nhnacademy.jpa.repository.dto;
+package com.nhnacademy.jpa.entity.dto;
 
 import java.time.LocalDateTime;
 

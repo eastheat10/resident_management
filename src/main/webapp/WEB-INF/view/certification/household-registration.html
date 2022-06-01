@@ -14,7 +14,7 @@
             height: 50px;
         }
     </style>
-    <title>주민등록등</title>
+    <title>주민등록등본</title>
 </head>
 <body>
 
@@ -54,7 +54,7 @@
         <td>성명</td>
         <td>주민등록번호</td>
         <td>신고일</td>
-        <td>변동사</td>
+        <td>변동사유</td>
     </tr>
     <tr>
         <td>본인</td>
@@ -63,12 +63,14 @@
         <td th:text="${person.reportDate}">신고일</td>
         <td th:text="${person.changeReasonCode}">변동사유</td>
     </tr>
-    <tr th:each="c : ${compositions}" th:if="${c.relationshipCode != '본인'}">
-        <td th:text="${c.relationshipCode}">세대주 관계</td>
-        <td th:text="${c.residentName}">성명</td>
-        <td th:text="${c.rrn}">주민등록번호</td>
-        <td th:text="${c.reportDate}">신고일</td>
-        <td th:text="${c.changeReasonCode}">변동사유</td>
+    <tr th:each="c : ${compositions}">
+        <th:block th:if="${c.relationshipCode != '본인'}">
+            <td th:text="${c.relationshipCode}">세대주 관계</td>
+            <td th:text="${c.residentName}">성명</td>
+            <td th:text="${c.rrn}">주민등록번호</td>
+            <td th:text="${c.reportDate}">신고일</td>
+            <td th:text="${c.changeReasonCode}">변동사유</td>
+        </th:block>
     </tr>
     </tfoot>
 </table>
