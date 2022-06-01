@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        td {
+            border: 1px solid black;
+            width: 110px;
+            height: 50px;
+        }
+    </style>
+    <title>사망신고서</title>
+</head>
+<body>
+
+<h1>사망신고서</h1>
+<table>
+    <thead>
+    <tr>
+        <td colspan="6">사망신고서</td>
+    </tr>
+    <tr>
+        <td th:text="'(신고일: ' + ${info.reportedDate} + ')'" colspan="6">신고일</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td rowspan="4">사망자</td>
+        <td colspan="2">성명</td>
+        <td th:text="${info.name}">성명</td>
+        <td>주민등록번호</td>
+        <td th:text="${info.rrn}">주민등록번호</td>
+    </tr>
+    <tr>
+        <td colspan="2">사망일시</td>
+        <td colspan="3" th:text="${info.deathDate}">사망일시</td>
+    </tr>
+    <tr>
+        <td rowspan="2">사망장소</td>
+        <td>구분</td>
+        <td th:text="${info.deathPlaceCode}" colspan="3">구분</td>
+    </tr>
+    <tr>
+        <td>주소</td>
+        <td th:text="${info.deathPlaceAddress}" colspan="3">주소</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td rowspan="3">신고인</td>
+        <td colspan="2">성명</td>
+        <td th:text="${info.reportResidentName}">성명</td>
+        <td>주민등록번호</td>
+        <td th:text="${info.reportResidentRrn}">주민등록번호</td>
+    </tr>
+    <tr>
+        <td colspan="2">자격</td>
+        <td th:text="${info.reportResidentQualification}" colspan="3">자격</td>
+    </tr>
+    <tr>
+        <td colspan="2">이메일</td>
+        <td th:text="${info.reportResidentEmail}">이메일</td>
+        <td>전화번호</td>
+        <td th:text="${info.reportResidentPhoneNumber}">전화번호</td>
+    </tr>
+    </tfoot>
+</table>
+</body>
+</html>
