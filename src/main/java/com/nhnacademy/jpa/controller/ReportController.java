@@ -1,6 +1,5 @@
 package com.nhnacademy.jpa.controller;
 
-import com.nhnacademy.jpa.dto.response.birthdeathreport.BirthReportInfoResponse;
 import com.nhnacademy.jpa.dto.response.birthdeathreport.ParentInfoResponse;
 import com.nhnacademy.jpa.service.ReportService;
 import java.util.List;
@@ -24,7 +23,7 @@ public class ReportController {
 
         ModelAndView mav = new ModelAndView("report/birth-report");
 
-        List<ParentInfoResponse> parentInfoResponses = reportService.parentInfo(id);
+        List<ParentInfoResponse> parentInfoResponses = reportService.findParentInfo(id);
         ParentInfoResponse father = null;
         ParentInfoResponse mother = null;
 
@@ -36,9 +35,19 @@ public class ReportController {
             }
         }
 
-        mav.addObject("info", reportService.birthReportInfo(id));
+        mav.addObject("info", reportService.findBirthReportInfo(id));
         mav.addObject("fa", father);
         mav.addObject("mo", mother);
+
+        return mav;
+    }
+
+    @GetMapping("/death/{id}")
+    public ModelAndView deathReport(@PathVariable("id") Long id) {
+
+        ModelAndView mav = new ModelAndView("report/death-report");
+
+        mav.addObject("info", reportService.findDeathReportInfo(id));
 
         return mav;
     }
